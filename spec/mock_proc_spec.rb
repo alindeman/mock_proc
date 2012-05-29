@@ -15,11 +15,19 @@ describe MockProc do
 
     it "allows all methods that invoke a block" do
       block = MockProc.new
-      block.should_be_called.exactly(3).times
+      block.should_be_called.exactly(2).times
 
       block[:foo]
-      block === :foo
       call_block_with_yield &block
+    end
+
+    if RUBY_VERSION >= '1.9'
+      it "allows the === method that invokes a block" do
+        block = MockProc.new
+        block.should_be_called
+
+        block === :foo
+      end
     end
 
     it "expects arguments" do
