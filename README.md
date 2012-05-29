@@ -1,29 +1,52 @@
 # MockProc
 
-TODO: Write a gem description
+An attempt to create a mock `Proc` object, so expectations can be set on how
+it is called.
 
-## Installation
+Ideal for testing callbacks; alternatives are discussed in [Avdi's blog
+post](http://devblog.avdi.org/2011/12/12/testing-that-a-block-is-called/).
 
-Add this line to your application's Gemfile:
+The implementation is meant to plug into other mocking libraries.
 
-    gem 'mock_proc'
+## rspec-mocks
 
-And then execute:
+```ruby
+describe MockProc do
+  it "expects an exact number of calls" do
+    block = MockProc.new
+    block.should_be_called.twice
 
-    $ bundle
+    2.times { block.call }
+  end
+end
+```
 
-Or install it yourself as:
+You can use all of the same predicates you expect:
 
-    $ gem install mock_proc
+```ruby
+describe MockProc do
+  it "expects arguments" do
+    block = MockProc.new
+    block.should_be_called.with(:foo)
 
-## Usage
+    block.call(:foo)
+  end
+end
+```
 
-TODO: Write usage instructions here
+It works any way you invoke the block:
 
-## Contributing
+```ruby
+describe MockProc do
+  it "allows all methods that invoke a block" do
+    block = MockProc.new
+    block.should_be_called.exactly(2).times
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+    block[:foo]
+    block === :foo
+  end
+end
+
+## TODO
+
+* Other mocking frameworks: mocha, ...?

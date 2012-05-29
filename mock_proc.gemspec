@@ -16,4 +16,7 @@ Gem::Specification.new do |gem|
   gem.version       = MockProc::VERSION
 
   gem.add_development_dependency "rspec", "~>2.10.0"
+  gem.add_development_dependency "bourne"
+  gem.add_development_dependency "pry"
+  gem.add_development_dependency "rake"
 end
