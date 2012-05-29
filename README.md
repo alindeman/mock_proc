@@ -6,7 +6,8 @@ it is called.
 Ideal for testing callbacks; alternatives are discussed in [Avdi's blog
 post](http://devblog.avdi.org/2011/12/12/testing-that-a-block-is-called/).
 
-The implementation is meant to plug into other mocking libraries.
+`mock_proc` is meant to plug into other mocking libraries. Right now it
+supports rspec-mocks.
 
 ## rspec-mocks
 
@@ -46,6 +47,7 @@ describe MockProc do
     block === :foo
   end
 end
+```
 
 ## TODO
 
