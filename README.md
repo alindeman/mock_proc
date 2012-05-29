@@ -1,5 +1,7 @@
 # MockProc
 
+[![Build Status](https://secure.travis-ci.org/alindeman/mock_proc.png)](http://travis-ci.org/alindeman/mock_proc)
+
 An attempt to create a mock `Proc` object, so expectations can be set on how
 it is called.
 
