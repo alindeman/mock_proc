@@ -2,10 +2,10 @@ require "delegate"
 
 class MockProc < SimpleDelegator
   def initialize
-    super(proc { |*a, &b| __call__(*a, &b) })
+    super(proc { |*a| __call__(*a) })
   end
 
-  def __call__(*a)
+  def __call__(*)
     "not stubbed; are you sure you set an expectation?"
   end
 end
